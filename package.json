@@ -1,0 +1,21 @@
+{
+  "name": "servis-mash",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "sass": "^1.71.1",
+    "vite": "^5.1.4"
+  },
+  "dependencies": {
+    "inputmask": "^5.0.8",
+    "just-validate": "^1.5.0",
+    "normalize.css": "^8.0.1",
+    "swiper": "^11.0.6"
+  }
+}

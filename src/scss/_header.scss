@@ -1,0 +1,108 @@
+.header {
+  position: relative;
+  z-index: 5;
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  background-color: transparent;
+}
+.logo-link {
+  display: inline-block;
+}
+.logo {
+  width: 140px;
+  height: 50px;
+}
+.header-list {
+  display: flex;
+  align-items: flex-start;
+  &__item {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    position: relative;
+    padding-top: 30px;
+    white-space: nowrap;
+    &:not(:last-child) {
+      margin-right: 15px;
+    }
+    & a {
+      transition: color .4s ease-in-out;
+      &:hover {
+        color: $color-orange;
+      }
+      &:active {
+        color: $color-orange;
+      }
+    }
+      &::before {
+          content: '';
+          display: block;
+          position: absolute;
+          top: 0;
+          width: 100%;
+          opacity: 0;
+          border-radius: 100%;
+          border-top: 3px solid $color-orange;
+          -webkit-filter: drop-shadow(0 10px 10px $color-orange);
+          filter: drop-shadow(0 10px 10px $color-orange);
+          transition: opacity .4s ease-in-out;
+      }
+      &:hover > .header-list__link {
+        color: $color-orange;
+    }
+    &:active > .header-list__link {
+      color: $color-orange;
+  }
+      &:hover::before {
+          opacity: 1;
+      }
+      &:active::before {
+        opacity: 1;
+    }
+  }
+  &__link {
+    &_action {
+      text-decoration: underline;
+    }
+}
+ &__contacts {
+   display: flex;
+   align-items: center;
+   &::before {
+     content: '';
+     display: block;
+     width: 20px;
+     height: 20px;
+     background-position: center;
+     background-repeat: no-repeat;
+     background-size: cover;
+     margin-right: 5px;
+   }
+   &_address::before {
+     background-image: url('../img/svg/address.svg');
+   }
+   &_telephone {
+     &::before {
+       background-image: url('../img/svg/telephone.svg');
+     }
+  }
+   &_mail {
+     &::before {
+       background-image: url('../img/svg/mail.svg');
+     }
+   }
+}
+  &__button {
+    font-weight: 400;
+    color: $color-white;
+    background-color: transparent;
+    transition: color .4s ease-in-out;
+    &:hover {
+      color: $color-orange;
+    }
+    &:active {
+      color: $color-orange;
+    }
+  }
+}
