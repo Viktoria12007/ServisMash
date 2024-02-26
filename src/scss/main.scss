@@ -1,6 +1,8 @@
 // @import "mixins";
+@import '../../node_modules/swiper/swiper.min.css';
+@import '../../node_modules/swiper/modules/pagination.min.css';
 @import "_fonts.scss";
-@import "normalize.css";
+@import "../../node_modules/normalize.css/normalize.css";
 @import "_vars.scss";
 @import "_settings.scss";
 @import "_scrolnav.scss";

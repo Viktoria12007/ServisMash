@@ -2,9 +2,6 @@ import '../../node_modules/just-validate/dist/js/just-validate';
 import Inputmask from "inputmask";
 import Swiper from 'swiper';
 import { Pagination, Mousewheel, HashNavigation } from 'swiper/modules';
-import 'swiper/scss';
-import 'swiper/scss/pagination';
-import '../scss/main.scss';
 
 document.addEventListener('DOMContentLoaded', function () {
     // Swiper
