@@ -1,26 +1,52 @@
 import '../../node_modules/just-validate/dist/js/just-validate';
 import Inputmask from "inputmask";
 import Swiper from 'swiper';
-import { Pagination, Mousewheel, HashNavigation } from 'swiper/modules';
+import { Pagination, Mousewheel, HashNavigation, Keyboard } from 'swiper/modules';
 
 document.addEventListener('DOMContentLoaded', function () {
     // Swiper
     const swiper = new Swiper('.swiper', {
-        modules: [Pagination, Mousewheel, HashNavigation],
+        modules: [Pagination, Mousewheel, HashNavigation, Keyboard],
         direction: 'vertical',
-        mousewheel: true,
-        simulateTouch: false,
+        mousewheel: false,
+        keyboard: {
+            enabled: false,
+        },
         pagination: {
             el: '.swiper-pagination',
             clickable: true,
             renderBullet: function (index, className) {
-                return '<span class="' + className + '">' + '0' + (index + 1) + "</span>";
+                return '<span class="' + className + '">' + "</span>";
             },
         },
         hashNavigation: {
             watchState: true,
         },
+        breakpoints: {
+            769: {
+                pagination: {
+                    el: '.swiper-pagination',
+                    clickable: true,
+                    renderBullet: function (index, className) {
+                        return '<span class="' + className + '">' + '0' + (index + 1) + "</span>";
+                    },
+                },
+            },
+            1024: {
+                simulateTouch: false,
+                pagination: {
+                    el: '.swiper-pagination',
+                    clickable: true,
+                    renderBullet: function (index, className) {
+                        return '<span class="' + className + '">' + '0' + (index + 1) + "</span>";
+                    },
+                },
+            }
+        },
     });
+
+    // вызов reorganizationPage при первой загрузке страницы
+    reorganizationPage();
 
     // маска телефона
     const selector = Array.from(document.querySelectorAll('input[type="tel"]'));
@@ -29,10 +55,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Прикрепить файл
     const fileInput = document.querySelector('input[type="file"]');
-
     fileInput.addEventListener('change', (e) => {
         let files = e.currentTarget.files;
-        // console.log(files);
 
         if (files.length) {
             const namesFiles = [];
@@ -40,25 +64,13 @@ document.addEventListener('DOMContentLoaded', function () {
             files.forEach((el) => {
                 namesFiles.push(el.name);
             })
-            // console.log(namesFiles);
+
             fileInput.closest('label').querySelector('span').textContent = namesFiles.join(', ');
         }
         else {
             fileInput.closest('label').querySelector('span').textContent = 'Прикрепить файл';
         }
     });
-
-    // управление модалкой
-    const overlay = document.querySelector('.overlay');
-    const resultModal = document.querySelector('.result-modal');
-    const closeResultModal = document.querySelector('.result-modal__close');
-    const textResultModal = document.querySelector('.result-modal__text');
-    function closeModal() {
-        resultModal.classList.remove('result-modal_show');
-        overlay.classList.remove('overlay_show');
-    }
-    closeResultModal.addEventListener('click', closeModal);
-    overlay.addEventListener('click', closeModal);
 
     // валидация формы
     const validateForms = function(selector, rules) {
@@ -93,7 +105,6 @@ document.addEventListener('DOMContentLoaded', function () {
             },
             submitHandler: function(form) {
                 const formData = new FormData(form);
-
                 const xhr = new XMLHttpRequest();
 
                 xhr.onreadystatechange = function() {
@@ -110,9 +121,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 xhr.open('POST', 'mail.php', true);
                 xhr.send(formData);
-
                 form.reset();
-
                 fileInput.closest('label').querySelector('span').textContent = 'Прикрепить файл';
             }
         });
@@ -130,11 +139,23 @@ document.addEventListener('DOMContentLoaded', function () {
 
             }} });
 
+    // управление модалкой
+    const overlay = document.querySelector('.overlay');
+    const resultModal = document.querySelector('.result-modal');
+    const closeResultModal = document.querySelector('.result-modal__close');
+    const textResultModal = document.querySelector('.result-modal__text');
+    function closeModal() {
+        resultModal.classList.remove('result-modal_show');
+        overlay.classList.remove('overlay_show');
+    }
+    closeResultModal.addEventListener('click', closeModal);
+    overlay.addEventListener('click', closeModal);
+
     // карта
     try {
         ymaps.ready(init);
     } catch (e) {
-     console.error(e);
+        console.error(e);
     }
     function init() {
         const myMap = new ymaps.Map("map", {
@@ -156,4 +177,60 @@ document.addEventListener('DOMContentLoaded', function () {
         myMap.controls.remove('rulerControl');
         myMap.behaviors.disable(['scrollZoom']);
     };
+
+    // мобильное меню
+    const burgerButton = document.querySelector('.burger-button');
+    const menuMobile = document.querySelector('.mobile-menu');
+    const closeMenuMobile = document.querySelector('.mobile-menu__close-button');
+    const navLinks = document.querySelectorAll('.header-list__item');
+    burgerButton.addEventListener('click', () => {
+        menuMobile.classList.add('show');
+    });
+    closeMenuMobile.addEventListener('click', () => {
+        menuMobile.classList.remove('show');
+    });
+    navLinks.forEach((item) => {
+        item.addEventListener('click', () => {
+            menuMobile.classList.remove('show');
+        });
+    })
+
+    // ресайз окна
+    function reorganizationPage() {
+        const navList = document.querySelector('.header-nav');
+        const mobileMenu = document.querySelector('.mobile-menu');
+        const logoLink = document.querySelector('.logo-link');
+        const contactsWrap = document.querySelector('.contacts__wrap');
+        const mapWrap = document.querySelector('.contacts__map-wrap');
+        const contactsList = document.querySelector('.contacts-list');
+        if (window.innerWidth >= 1024) {
+            swiper.mousewheel.enable();
+            swiper.keyboard.enable();
+            logoLink.after(navList);
+            contactsWrap.append(contactsList);
+        } else if (window.innerWidth > 768 && window.innerWidth <= 1023) {
+            swiper.mousewheel.disable();
+            swiper.keyboard.disable();
+            logoLink.after(navList);
+            contactsWrap.append(contactsList);
+        }
+        else if (window.innerWidth > 430 && window.innerWidth <= 768) {
+            swiper.mousewheel.disable();
+            swiper.keyboard.disable();
+            mobileMenu.append(navList);
+            mapWrap.append(contactsList);
+        }
+        else {
+            swiper.mousewheel.disable();
+            swiper.keyboard.disable();
+            mobileMenu.append(navList);
+            mapWrap.append(contactsList);
+        }
+    }
+    window.addEventListener('resize', () => {
+        console.debug('resize');
+        swiper.update();
+        swiper.pagination.render();
+        reorganizationPage();
+    });
 });
