@@ -7,19 +7,11 @@
   justify-content: space-between;
   padding: 20px;
   background-color: $color-orange;
-  &__logo {
-    width: 170px;
-    height: 70px;
-  }
   &__socials {
     &-list {
       display: flex;
       align-items: center;
-    }
-    &-item {
-      &:not(:last-child) {
-        margin-right: 30px;
-      }
+      gap: 30px;
     }
     &-link {
       display: inline-block;
@@ -69,10 +61,13 @@
     }
   }
   &-list {
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(1, auto);
+    gap: 30px;
     &__item {
-      &:not(:last-child) {
-        margin-right: 30px;
+      &_advantages {
+        display: none;
       }
     }
     &__link {
@@ -83,6 +78,91 @@
       &:active {
         color: $color-black;
       }
+    }
+  }
+}
+@media (min-width: 769px) and (max-width: 1055px) {
+  .footer {
+    padding: 15px;
+    * .logo {
+      height: 50px;
+    }
+    &__socials {
+      &-link {
+        width: 25px;
+        height: 25px;
+      }
+    }
+    &-list {
+      height: 100%;
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: repeat(3, auto);
+      gap: 0;
+      &__item {
+        &_advantages {
+          display: block;
+        }
+      }
+    }
+  }
+}
+@media (min-width: 431px) and (max-width: 768px) {
+  .footer {
+    height: 130px;
+    flex-direction: column-reverse;
+    padding: 15px;
+    * .logo {
+      height: 50px;
+    }
+    &__socials {
+      &-link {
+        width: 25px;
+        height: 25px;
+      }
+    }
+    &-list {
+      height: 100%;
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: repeat(3, auto);
+      gap: 0;
+      &__item {
+        &_advantages {
+          display: block;
+        }
+      }
+    }
+    &-nav {
+      display: none;
+    }
+  }
+}
+@media (min-width: 300px) and (max-width: 430px) {
+  .footer {
+    height: 110px;
+    flex-direction: column-reverse;
+    padding: 15px;
+    * .logo {
+      height: 40px;
+    }
+    &__socials {
+      &-link {
+        width: 20px;
+        height: 20px;
+      }
+    }
+    &-list {
+      height: 100%;
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: repeat(3, auto);
+      gap: 0;
+      &__item {
+        &_advantages {
+          display: block;
+        }
+      }
+    }
+    &-nav {
+      display: none;
     }
   }
 }

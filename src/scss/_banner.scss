@@ -3,7 +3,7 @@
   flex-direction: column;
   justify-content: flex-start;
   padding-top: 0;
-  background-image: url(../img/banner.jpeg);
+  background-image: url(../img/banner.jpeg?as=webp);
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -13,8 +13,7 @@
   min-width: 685px;
   position: relative;
   z-index: 5;
-  margin-top: auto;
-  margin-bottom: 30px;
+  margin: auto 0;
   &__title {
     margin-bottom: 10px;
     font-weight: 700;
@@ -92,22 +91,67 @@
   z-index: 5;
   display: inline-flex;
   align-self: flex-start;
+  gap: 50px;
   padding: 10px;
-  margin-bottom: auto;
+  margin-top: 30px;
   -webkit-backdrop-filter: blur(25px);
   backdrop-filter: blur(25px);
   &__advantage {
     width: 150px;
-    &:not(:last-child) {
-    margin-right: 50px;
+    & > svg {
+      width: 50px;
+      height: 50px;
+      fill: $color-orange;
+      -webkit-filter: drop-shadow(0 0 10px $color-orange);
+      filter: drop-shadow(0 0 10px $color-orange);
+      margin-bottom: 10px;
     }
-  & > svg {
-    width: 50px;
-    height: 50px;
-    fill: $color-orange;
-    -webkit-filter: drop-shadow(0 0 10px $color-orange);
-    filter: drop-shadow(0 0 10px $color-orange);
-    margin-bottom: 10px;
   }
 }
+@media (min-width: 769px) and (max-width: 1055px) {
+  .banner-list {
+    display: none;
+  }
+}
+@media (min-width: 431px) and (max-width: 768px) {
+  .banner-box {
+    width: 100%;
+    min-width: 285px;
+    &__title {
+      margin-bottom: 10px;
+      font-size: 38px;
+      line-height: 38px;
+    }
+    &__link {
+      display: inline-block;
+      padding: 10px 15px 10px 15px;
+      &_application {
+        margin-right: 10px;
+      }
+    }
+  }
+  .banner-list {
+    display: none;
+  }
+}
+@media (min-width: 300px) and (max-width: 430px) {
+  .banner-box {
+    width: 100%;
+    min-width: 285px;
+    &__title {
+      margin-bottom: 10px;
+      font-size: 30px;
+      line-height: 30px;
+    }
+    &__link {
+      display: inline-block;
+      padding: 10px 15px 10px 15px;
+      &_application {
+        margin-right: 10px;
+      }
+    }
+  }
+  .banner-list {
+    display: none;
+  }
 }

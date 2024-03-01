@@ -20,22 +20,6 @@ body {
   width: 100%;
   height: 100vh;
 }
-//.wrapper {
-//  height: 100%;
-//  position: relative;
-//  overflow: hidden;
-//}
-//.maincontent {
-//  width: 100%;
-//  height: 100%;
-//  position: relative;
-//  top: 0;
-//  -webkit-transition: top 1s;
-//  -o-transition: top 1s;
-//  -moz-transition: top 1s;
-//  -ms-transition: top 1s;
-//  transition: top 1s;
-//}
 .page {
   width: 100%;
   height: 100%;
@@ -82,6 +66,9 @@ ul {
   max-width: 1920px;
   margin: 0 auto;
 }
+[data-hash="advantages"] {
+  display: none;
+}
 .swiper-vertical > .swiper-pagination-bullets, .swiper-pagination-vertical.swiper-pagination-bullets {
   right: 50px;
 }
@@ -101,6 +88,7 @@ ul {
 }
 .swiper-pagination-bullet-active {
   color: $color-orange;
+  line-height: 32px;
   font-size: 32px;
   -webkit-filter: drop-shadow(0 0 10px $color-orange);
   filter: drop-shadow(0 0 10px $color-orange);
@@ -180,3 +168,120 @@ ul {
     opacity: 0.6;
   }
 }
+@media (min-width: 769px) and (max-width: 1055px) {
+  .title {
+    margin-bottom: 30px;
+  }
+  [data-hash="advantages"] {
+    display: block;
+  }
+  .swiper-vertical > .swiper-pagination-bullets, .swiper-pagination-vertical.swiper-pagination-bullets {
+    right: 30px;
+  }
+}
+@media (min-width: 431px) and (max-width: 768px) {
+  html,
+  body {
+    font-size: 14px;
+    line-height: 17px;
+  }
+  .page {
+    padding: 20px;
+  }
+  .button {
+    line-height: 17px;
+    font-size: 14px;
+  }
+  .title {
+    font-size: 28px;
+    line-height: 28px;
+    margin-bottom: 20px;
+  }
+  [data-hash="advantages"] {
+    display: block;
+  }
+  .swiper-pagination-vertical.swiper-pagination-bullets .swiper-pagination-bullet, .swiper-vertical > .swiper-pagination-bullets .swiper-pagination-bullet {
+    margin: var(--swiper-pagination-bullet-vertical-gap, 6px) 0;
+    display: block;
+  }
+  .swiper-pagination-bullet {
+    width: var(--swiper-pagination-bullet-width, var(--swiper-pagination-bullet-size, 8px));
+    height: var(--swiper-pagination-bullet-height, var(--swiper-pagination-bullet-size, 8px));
+    border-radius: var(--swiper-pagination-bullet-border-radius, 50%);
+    background: $color-light;
+    opacity: var(--swiper-pagination-bullet-inactive-opacity, .2);
+    display: inline-block;
+  }
+  .swiper-pagination-bullet-active {
+    opacity: var(--swiper-pagination-bullet-opacity, 1);
+    background: $color-orange;
+  }
+  .swiper-pagination-vertical.swiper-pagination-bullets, .swiper-vertical > .swiper-pagination-bullets {
+    right: var(--swiper-pagination-right, 8px);
+  }
+  .result-modal {
+    width: 75%;
+    &__close {
+      & > svg {
+        width: 11px;
+        height: 11px;
+      }
+    }
+  }
+}
+@media (min-width: 300px) and (max-width: 430px) {
+  html,
+  body {
+    font-size: 14px;
+    line-height: 17px;
+  }
+  .page {
+    padding: 15px;
+  }
+  .button {
+    line-height: 17px;
+    font-size: 14px;
+  }
+  .title {
+    font-size: 24px;
+    line-height: 24px;
+    margin-bottom: 20px;
+  }
+  [data-hash="advantages"] {
+    display: block;
+  }
+  .swiper-pagination-vertical.swiper-pagination-bullets .swiper-pagination-bullet, .swiper-vertical > .swiper-pagination-bullets .swiper-pagination-bullet {
+    margin: var(--swiper-pagination-bullet-vertical-gap, 6px) 0;
+    display: block;
+  }
+  .swiper-pagination-bullet {
+    width: var(--swiper-pagination-bullet-width, var(--swiper-pagination-bullet-size, 8px));
+    height: var(--swiper-pagination-bullet-height, var(--swiper-pagination-bullet-size, 8px));
+    border-radius: var(--swiper-pagination-bullet-border-radius, 50%);
+    background: $color-light;
+    opacity: var(--swiper-pagination-bullet-inactive-opacity, .2);
+    display: inline-block;
+  }
+  .swiper-pagination-bullet-active {
+    opacity: var(--swiper-pagination-bullet-opacity, 1);
+    background: $color-orange;
+  }
+  .swiper-pagination-vertical.swiper-pagination-bullets, .swiper-vertical > .swiper-pagination-bullets {
+    right: var(--swiper-pagination-right, 8px);
+  }
+  .result-modal {
+    width: 75%;
+    &__text {
+      padding: 10px 15px;
+    }
+    &__close {
+      top: 5px;
+      right: 10px;
+      & > svg {
+        width: 11px;
+        height: 11px;
+      }
+    }
+  }
+}
+
